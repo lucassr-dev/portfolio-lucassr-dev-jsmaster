@@ -1,0 +1,29 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "parseroptions": {
+    "ecmafeatures": {
+      "jsx": true
+    },
+    "ecmaversion": "latest",
+    "sourcetype": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsignorepattern": "^_",
+        "varsignorepattern": "^_"
+      }
+    ]
+  }
+}

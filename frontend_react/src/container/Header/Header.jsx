@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 import { AppWrap } from '../../wrapper';
 import { images } from '../../constants';
+import { client, urlFor } from '../../client';
 import './Header.scss';
 
 const scaleVariants = {
@@ -16,35 +17,50 @@ const scaleVariants = {
   },
 };
 
-const Header = () => (
+const Header = () => {
+  const [headerContent, setHeaderContent] = useState([]);
+  useEffect(() => {
+    const query = '*[_type == "headerContent"]';
+    
+  client.fetch(query).then((data) => {
+    setHeaderContent(data);
+  });
+}, []);
+return (
   <div className="app__header app__flex">
-    <motion.div
-      whileInView={{ x: [-100, 0], opacity: [0, 1] }}
-      transition={{ duration: 0.5 }}
-      className="app__header-info"
-    >
-      <div className="app__header-badge">
-        <div className="badge-cmp app__flex">
-          <span>👋</span>
-          <div style={{ marginLeft: 20 }}>
-            <p className="p-text">Hello, I am</p>
-            <h1 className="head-text">Micael</h1>
-          </div>
-        </div>
+{headerContent.map((header, index) => (
+<motion.div
+whileInView={{ x: [-100, 0], opacity: [0, 1] }}
+transition={{ duration: 0.5 }}
+className="app__header-info"
+>
+<div className="app__header-badge">
+  <div className="badge-cmp app__flex">
+    <span>👋</span>
+    <div style={{ marginLeft: 20 }}>
+      <p className="p-text">Hello, I am</p>
+      
+        <h1 className="head-text">{header.name}</h1>
+      
+      
+    </div>
+  </div>
 
-        <div className="tag-cmp app__flex">
-          <p className="p-text">Web Developer</p>
-          <p className="p-text">Freelancer</p>
-        </div>
-      </div>
-    </motion.div>
+  <div className="tag-cmp app__flex">
+    <p className="p-text">{header.jobTitle1}</p>
+    <p className="p-text">{header.jobTitle2}</p>
+  </div>
+</div>
+</motion.div>
+))}
 
+{headerContent.map((header) => (
     <motion.div
       whileInView={{ opacity: [0, 1] }}
       transition={{ duration: 0.5, delayChildren: 0.5 }}
       className="app__header-img"
     >
-      <img src={images.profile} alt="profile_bg" />
+      <img src={urlFor(header.profileImage).quality(100).size(566, 700).fit('fill')} alt="profile_bg" />
       <motion.img
         whileInView={{ scale: [0, 1] }}
         transition={{ duration: 1, ease: 'easeInOut' }}
@@ -53,7 +69,7 @@ const Header = () => (
         className="overlay_circle"
       />
     </motion.div>
-
+))}
     <motion.div
       variants={scaleVariants}
       whileInView={scaleVariants.whileInView}
@@ -66,6 +82,7 @@ const Header = () => (
       ))}
     </motion.div>
   </div>
-);
+)
+};
 
 export default AppWrap(Header, 'home');
