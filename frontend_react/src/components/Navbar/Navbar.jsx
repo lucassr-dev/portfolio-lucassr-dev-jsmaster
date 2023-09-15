@@ -18,12 +18,11 @@ const Navbar = () => {
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
-      {navbar.map((navbar) => (
-        <a href="">
-           <img src={urlFor(navbar.logoUrl)} alt={navbar.title} />
-        </a>
-        
-      ))}
+        {navbar.map((navbar) => (
+          <a href="">
+            <img src={urlFor(navbar.logoUrl)} alt={navbar.title} />
+          </a>
+        ))}
       </div>
       <ul className="app__navbar-links">
         {['home', 'about', 'work', 'skills', 'testimonial', 'contact'].map((item) => (
