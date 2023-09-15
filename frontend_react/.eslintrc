@@ -5,7 +5,7 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:jsx-a11y/recommended"
+    "plugin:react/recommended"
   ],
   "parserOptions": {
     "ecmafeatures": {
@@ -18,12 +18,8 @@
     "react"
   ],
   "rules": {
-    "no-unused-vars": [
-      "warn",
-      {
-        "argsignorepattern": "^_",
-        "varsignorepattern": "^_"
-      }
-    ]
+    "no-unused-vars": {
+      "severity": "error"
+    }
   }
 }

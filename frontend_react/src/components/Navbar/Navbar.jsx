@@ -19,7 +19,10 @@ const Navbar = () => {
     <nav className="app__navbar">
       <div className="app__navbar-logo">
       {navbar.map((navbar) => (
-        <img src={urlFor(navbar.logoUrl)} alt={navbar.title} />
+        <a href="">
+           <img src={urlFor(navbar.logoUrl)} alt={navbar.title} />
+        </a>
+        
       ))}
       </div>
       <ul className="app__navbar-links">
