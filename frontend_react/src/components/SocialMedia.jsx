@@ -4,13 +4,11 @@ import { FaFacebookF } from 'react-icons/fa';
 
 const SocialMedia = () => (
   <div className="app__social">
-    // eslint-disable-next-line
       <a href="https://www.linkedin.com/in/lucassrjob/">
       <div>
       <BsLinkedin />
       </div>
       </a>
-      // eslint-disable-next-line
       <a href="">
         <div>
           <BsGithub />

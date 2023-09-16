@@ -19,7 +19,6 @@ const Navbar = () => {
     <nav className="app__navbar">
       <div className="app__navbar-logo">
         {navbar.map((navbar) => (
-          // eslint-disable-next-line
           <a href="">
             <img src={urlFor(navbar.logoUrl)} alt={navbar.title} />
           </a>
